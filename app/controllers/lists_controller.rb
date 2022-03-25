@@ -16,7 +16,7 @@ class ListsController < ApplicationController
   def create
     @list = List.create(list_params)
     if @list.save
-      redirect_to list_path(@list)
+      redirect_to root_path(@list)
     else
       render :new
     end
@@ -24,7 +24,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to lists_path
+    redirect_to root_path
   end
 
   private
@@ -35,9 +35,5 @@ class ListsController < ApplicationController
 
   def set_list
     @list = List.find(params[:id])
-  end
-
-  def list_params
-    params.require(:list).permit(:name)
   end
 end
